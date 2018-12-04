@@ -5,6 +5,6 @@ package studio.inkode.http;
  *
  * @author Maxim Seredkin
  */
-public class HttpServerErrorException extends RuntimeException {
+public class HttpServerErrorException extends Exception {
     public HttpServerErrorException(int responseCode, String responseMessage) {}
 }

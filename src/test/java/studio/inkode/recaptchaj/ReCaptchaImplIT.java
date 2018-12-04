@@ -1,9 +1,6 @@
 package studio.inkode.recaptchaj;
 
 import org.junit.jupiter.api.Test;
-import studio.inkode.http.exception.UrlEncodingException;
-
-import java.net.URISyntaxException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,28 +15,28 @@ class ReCaptchaImplIT {
     private String validSecret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
 
     @Test
-    void verifyByResponse() throws URISyntaxException, UrlEncodingException {
+    void verifyByResponse() throws Exception {
         // Arrange
         String secret = validSecret;
 
         ReCaptcha reCaptcha = new ReCaptchaImpl(secret);
 
         // Act
-        ReCaptchaResult result = reCaptcha.verify("test");
+        ReCaptchaResponse result = reCaptcha.verify("test");
 
         // Assert
         assertThat(result.isSuccess()).isTrue();
     }
 
     @Test
-    void verifyByResponseWithInvalidSecret() throws URISyntaxException, UrlEncodingException {
+    void verifyByResponseWithInvalidSecret() throws Exception {
         // Arrange
         String secret = invalidSecret;
 
         ReCaptcha reCaptcha = new ReCaptchaImpl(secret);
 
         // Act
-        ReCaptchaResult result = reCaptcha.verify("test");
+        ReCaptchaResponse result = reCaptcha.verify("test");
 
         // Assert
         assertThat(result.isSuccess()).isFalse();

@@ -1,6 +1,5 @@
 package studio.inkode.recaptchaj;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,29 +9,13 @@ import java.util.List;
  * @author Maxim Seredkin
  */
 public interface ReCaptchaResponse {
-    default ReCaptchaResponse getInstance(boolean success,
-                                          Date challengeTs,
-                                          List<String> errorCodes,
-                                          String hostname,
-                                          String appPackageName) {
-        if (errorCodes == null) errorCodes = new ArrayList<>();
+    boolean isSuccess();
 
-        if (appPackageName == null &&
-            hostname != null && !hostname.trim().isEmpty()) {
-            return new WebReCaptchaResponse(success, challengeTs, errorCodes, hostname);
-        }
+    Date getChallengeTs();
 
-        if (hostname == null &&
-            appPackageName != null && !appPackageName.trim().isEmpty()) {
-            return new AppReCaptchaResponse(success, challengeTs, errorCodes, appPackageName);
-        }
+    List<String> getErrorCodes();
 
-        throw new IllegalArgumentException();
-    }
+    String getAppPackageName();
 
-    public boolean isSuccess();
-
-    public Date getChallengeTs();
-
-    public List<String> getErrorCodes();
+    String getHostname();
 }

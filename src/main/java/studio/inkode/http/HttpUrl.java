@@ -20,7 +20,7 @@ public class HttpUrl {
         this(new URL(url));
     }
 
-    public HttpUrl(URL url) throws URISyntaxException {
+    public HttpUrl(URL url) {
         this.url = url;
     }
 

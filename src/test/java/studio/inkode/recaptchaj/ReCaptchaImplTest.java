@@ -4,9 +4,6 @@ import io.specto.hoverfly.junit.core.Hoverfly;
 import io.specto.hoverfly.junit5.HoverflyExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import studio.inkode.http.exception.UrlEncodingException;
-
-import java.net.URISyntaxException;
 
 import static io.specto.hoverfly.junit.core.SimulationSource.dsl;
 import static io.specto.hoverfly.junit.dsl.HoverflyDsl.service;
@@ -21,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(HoverflyExtension.class)
 class ReCaptchaImplTest {
     @Test
-    void verify(Hoverfly hoverfly) throws URISyntaxException, UrlEncodingException {
+    void verify(Hoverfly hoverfly) throws Exception {
         // Arrange
         hoverfly.simulate(dsl(service("www.google.com")
                                       .post("/recaptcha/api/siteverify")
@@ -36,9 +33,5 @@ class ReCaptchaImplTest {
 
         // Assert
         assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    void verify1() {
     }
 }

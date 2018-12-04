@@ -17,7 +17,7 @@ public interface ReCaptcha {
      *
      * @param response Required. The user response token provided by reCAPTCHA, verifying the user on your site.
      */
-    ReCaptchaResult verify(@NotNull("secret must be not null") String response) throws URISyntaxException, UrlEncodingException, IOException;
+    ReCaptchaResponse verify(@NotNull("secret must be not null") String response) throws URISyntaxException, UrlEncodingException, IOException;
 
     /**
      * Verify the User's Response
@@ -25,6 +25,6 @@ public interface ReCaptcha {
      * @param response Required. The user response token provided by reCAPTCHA, verifying the user on your site.
      * @param remoteIp Optional. The user's IP address.
      */
-    ReCaptchaResult verify(@NotNull("secret must be not null") String response,
-                           @NotNull("remote IP must be not null") String remoteIp);
+    ReCaptchaResponse verify(@NotNull("secret must be not null") String response,
+                             @NotNull("remote IP must be not null") String remoteIp) throws URISyntaxException, UrlEncodingException, IOException;
 }
